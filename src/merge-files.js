@@ -42,7 +42,7 @@ if (!duplicated) {
 const removed = removePages(destinationDocument, pageRange);
 
 // If something went wrong, the script will exit and warn the user
-if (!duplicated) {
+if (!duplicated || !removed) {
   notify('Something went wrong, please try again');
   exit();
 }
