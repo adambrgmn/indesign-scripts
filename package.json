@@ -4,12 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prebuild": "rimraf dist/**/*",
     "build": "rollup -c",
-    "postbuild": "./scripts/link-scripts.sh"
+    "postbuild": "./scripts/link-scripts.js"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-preset-env": "^1.5.2",
+    "rimraf": "^2.6.1",
     "rollup": "^0.43.0",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
