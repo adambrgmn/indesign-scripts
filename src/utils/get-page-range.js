@@ -41,4 +41,4 @@ const getPageRange = ({ min = '1', max = '9999' }) => {
   return result;
 };
 
-module.exports = getPageRange;
+export default getPageRange;

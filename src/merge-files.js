@@ -1,6 +1,7 @@
-const getPageRange = require('./utils/get-page-range');
-const duplicatePages = require('./utils/duplicate-pages');
-const removePages = require('./utils/remove-pages');
+import './polyfills';
+import getPageRange from './utils/get-page-range';
+import duplicatePages from './utils/duplicate-pages';
+import removePages from './utils/remove-pages';
 
 // Get destination document from currently active document
 const destinationDocument = app.activeDocument;
