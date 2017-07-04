@@ -1,6 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
+import { version } from './package.json';
 
 export default {
   entry: 'src/merge-files.js',
@@ -11,5 +12,5 @@ export default {
     commonjs(),
     babel({ exclude: 'node_modules/**' }),
   ],
-  dest: 'dist/merge-files.jsx',
+  dest: `dist/merge-files_${version}.jsx`,
 };
