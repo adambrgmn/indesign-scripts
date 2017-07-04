@@ -12,5 +12,8 @@
     "alert": false,
     "SaveOptions": false,
     "LocationOptions": false
+  },
+  "rules": {
+    "arrow-parens": 0
   }
 }
