@@ -2,6 +2,7 @@ import './polyfills';
 import getPageRange from './utils/get-page-range';
 import duplicatePages from './utils/duplicate-pages';
 import removePages from './utils/remove-pages';
+import checkLinkedTextFrames from './utils/check-linked-text-frames';
 import notify from './utils/notify';
 
 // Get destination document from currently active document
@@ -28,9 +29,30 @@ const pageRange = getPageRange({
 // If the user clicked "cancel" in the dialog the script will exit
 if (!pageRange) exit();
 
+const hasLinkedText = checkLinkedTextFrames(sourceDocument, {
+  start: pageRange.start,
+  end: pageRange.end,
+});
+
+if (hasLinkedText.length > 0) {
+  // eslint-disable-next-line
+  const shouldContinue = confirm(
+    `Found linked text frames outside the range you want to copy.
+On pages ${hasLinkedText.join(', ')}
+
+If you merge these pages the linked text will be broken. Do you want to continue?`,
+  );
+
+  if (!shouldContinue) exit();
+}
+
 // Duplicate the pages from the the
 // source document to the detination document
-const duplicated = duplicatePages(sourceDocument, destinationDocument, pageRange);
+const duplicated = duplicatePages(
+  sourceDocument,
+  destinationDocument,
+  pageRange,
+);
 
 // If something went wrong, the script will exit and warn the user
 if (!duplicated) {
@@ -49,7 +71,6 @@ if (!duplicated || !removed) {
 
 // Close the source document without saving
 sourceDocument.close(SaveOptions.NO);
-
 
 notify('Merged completed');
 exit();
