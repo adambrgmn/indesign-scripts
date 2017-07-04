@@ -2,6 +2,7 @@ import './polyfills';
 import getPageRange from './utils/get-page-range';
 import duplicatePages from './utils/duplicate-pages';
 import removePages from './utils/remove-pages';
+import notify from './utils/notify';
 
 // Get destination document from currently active document
 const destinationDocument = app.activeDocument;
@@ -33,7 +34,7 @@ const duplicated = duplicatePages(sourceDocument, destinationDocument, pageRange
 
 // If something went wrong, the script will exit and warn the user
 if (!duplicated) {
-  alert('Something went wrong, please try again');
+  notify('Something went wrong, please try again');
   exit();
 }
 
@@ -42,7 +43,7 @@ const removed = removePages(destinationDocument, pageRange);
 
 // If something went wrong, the script will exit and warn the user
 if (!duplicated) {
-  alert('Something went wrong, please try again');
+  notify('Something went wrong, please try again');
   exit();
 }
 
@@ -50,5 +51,5 @@ if (!duplicated) {
 sourceDocument.close(SaveOptions.NO);
 
 
-alert('Merged completed');
+notify('Merged completed');
 exit();

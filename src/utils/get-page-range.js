@@ -1,3 +1,5 @@
+import notify from './notify';
+
 const parseRange = (range, { min, max }) => {
   // Match the input and get the values
   const regExp = /^(\d+)-(\d+)$/;
@@ -5,7 +7,7 @@ const parseRange = (range, { min, max }) => {
 
   // Check if the numbers are in range
   if (Number(start) < min || Number(end) > max) {
-    alert(`Wrongly formatted range – the range must be between ${min}-${max}`);
+    notify(`Wrongly formatted range – the range must be between ${min}-${max}`);
     return null;
   }
 
