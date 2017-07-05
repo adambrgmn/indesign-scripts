@@ -36,7 +36,7 @@ const run = async () => {
       copyFile(source, dest);
     });
   } catch (e) {
-    console.error(e); // eslint-disable-line
+    process.stderr.write(e);
   }
 };
 
