@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { resolve, join } = require('path');
+const { resolve } = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
 
@@ -36,7 +36,7 @@ const run = async () => {
       copyFile(source, dest);
     });
   } catch (e) {
-    console.error(e);
+    process.stderr.write(e);
   }
 };
 
