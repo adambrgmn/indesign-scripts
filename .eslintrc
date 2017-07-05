@@ -1,0 +1,21 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "node": true,
+    "es6": true,
+    "applescript": true
+  },
+  "globals": {
+    "app": false,
+    "File": false,
+    "exit": false,
+    "alert": false,
+    "confirm": false,
+    "SaveOptions": false,
+    "LocationOptions": false
+  },
+  "rules": {
+    "arrow-parens": 0,
+    "no-alert": 0,
+  }
+}

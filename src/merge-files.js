@@ -1,6 +1,9 @@
-const getPageRange = require('./utils/get-page-range');
-const duplicatePages = require('./utils/duplicate-pages');
-const removePages = require('./utils/remove-pages');
+import './polyfills';
+import getPageRange from './utils/get-page-range';
+import duplicatePages from './utils/duplicate-pages';
+import removePages from './utils/remove-pages';
+import checkLinkedTextFrames from './utils/check-linked-text-frames';
+import notify from './utils/notify';
 
 // Get destination document from currently active document
 const destinationDocument = app.activeDocument;
@@ -26,13 +29,33 @@ const pageRange = getPageRange({
 // If the user clicked "cancel" in the dialog the script will exit
 if (!pageRange) exit();
 
+const hasLinkedText = checkLinkedTextFrames(sourceDocument, {
+  start: pageRange.start,
+  end: pageRange.end,
+});
+
+if (hasLinkedText.length > 0) {
+  const shouldContinue = confirm(
+    `Found linked text frames outside the range you want to copy.
+On pages ${hasLinkedText.join(', ')}
+
+If you merge these pages the linked text will be broken. Do you want to continue?`,
+  );
+
+  if (!shouldContinue) exit();
+}
+
 // Duplicate the pages from the the
 // source document to the detination document
-const duplicated = duplicatePages(sourceDocument, destinationDocument, pageRange);
+const duplicated = duplicatePages(
+  sourceDocument,
+  destinationDocument,
+  pageRange,
+);
 
 // If something went wrong, the script will exit and warn the user
 if (!duplicated) {
-  alert('Something went wrong, please try again');
+  notify('Something went wrong, please try again');
   exit();
 }
 
@@ -40,14 +63,13 @@ if (!duplicated) {
 const removed = removePages(destinationDocument, pageRange);
 
 // If something went wrong, the script will exit and warn the user
-if (!duplicated) {
-  alert('Something went wrong, please try again');
+if (!duplicated || !removed) {
+  notify('Something went wrong, please try again');
   exit();
 }
 
 // Close the source document without saving
 sourceDocument.close(SaveOptions.NO);
 
-
-alert('Merged completed');
+notify('Merged completed');
 exit();
