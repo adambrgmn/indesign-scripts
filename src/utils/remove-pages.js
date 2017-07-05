@@ -9,4 +9,4 @@ const removePages = (dest, { start, end }) => {
   }
 };
 
-export default removePages;
+module.exports = removePages;
