@@ -33,8 +33,10 @@ export default (sourceFile, { start, end }) => {
       const nextFrame = frame.nextTextFrame;
       const prevFrame = frame.previousTextFrame;
 
-      if (nextFrame && !isInRange(nextFrame)) hasLinkedTextFrameOutsideRange = true;
-      if (prevFrame && !isInRange(prevFrame)) hasLinkedTextFrameOutsideRange = true;
+      if (nextFrame && !isInRange(nextFrame))
+        hasLinkedTextFrameOutsideRange = true;
+      if (prevFrame && !isInRange(prevFrame))
+        hasLinkedTextFrameOutsideRange = true;
 
       i += 1;
     }
