@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-const { resolve, join } = require('path');
+const { resolve } = require('path');
 const { promisify } = require('util');
 const fs = require('fs');
 
 const readdir = promisify(fs.readdir);
 
-const sourceDir = resolve(__dirname, '../dist');
+const sourceDir = resolve(__dirname, '../build');
 
 const getInDesignDir = async () => {
   const apps = await readdir('/Applications', 'utf8');
@@ -36,7 +36,7 @@ const run = async () => {
       copyFile(source, dest);
     });
   } catch (e) {
-    console.error(e);
+    console.error(e); // eslint-disable-line
   }
 };
 
