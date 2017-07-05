@@ -35,7 +35,6 @@ const hasLinkedText = checkLinkedTextFrames(sourceDocument, {
 });
 
 if (hasLinkedText.length > 0) {
-  // eslint-disable-next-line
   const shouldContinue = confirm(
     `Found linked text frames outside the range you want to copy.
 On pages ${hasLinkedText.join(', ')}

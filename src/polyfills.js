@@ -1,22 +1,27 @@
+/* eslint-disable
+no-extend-native,
+no-prototype-builtins,
+no-void, no-bitwise,
+no-restricted-syntax */
+
 if (!Array.isArray) {
   Array.isArray = arg =>
     Object.prototype.toString.call(arg) === '[object Array]';
 }
 
 if (!Array.prototype.filter) {
-  Array.prototype.filter = function filter(fun) { // eslint-disable-line
-    if (this === void 0 || this === null) { // eslint-disable-line
+  Array.prototype.filter = function filter(fun, thisArg = void 0) {
+    if (this === void 0 || this === null) {
       throw new TypeError();
     }
 
     const t = Object(this);
-    const len = t.length >>> 0; // eslint-disable-line
+    const len = t.length >>> 0;
     if (typeof fun !== 'function') {
       throw new TypeError();
     }
 
     const res = [];
-    const thisArg = arguments.length >= 2 ? arguments[1] : void 0; // eslint-disable-line
     for (let i = 0; i < len; i += 1) {
       if (i in t) {
         const val = t[i];
@@ -32,7 +37,7 @@ if (!Array.prototype.filter) {
 }
 
 if (!Array.prototype.includes) {
-  Array.prototype.includes = function includes(searchElement, fromIndex) { // eslint-disable-line
+  Array.prototype.includes = function includes(searchElement, fromIndex) {
     // 1. Let O be ? ToObject(this value).
     if (this == null) {
       throw new TypeError('"this" is null or not defined');
@@ -41,7 +46,7 @@ if (!Array.prototype.includes) {
     const o = Object(this);
 
     // 2. Let len be ? ToLength(? Get(O, "length")).
-    const len = o.length >>> 0; // eslint-disable-line
+    const len = o.length >>> 0;
 
     // 3. If len is 0, return false.
     if (len === 0) {
@@ -50,7 +55,7 @@ if (!Array.prototype.includes) {
 
     // 4. Let n be ? ToInteger(fromIndex).
     //    (If fromIndex is undefined, this step produces the value 0.)
-    const n = fromIndex | 0; // eslint-disable-line
+    const n = fromIndex | 0;
 
     // 5. If n ≥ 0, then
     //  a. Let k be n.
@@ -80,7 +85,7 @@ if (!Array.prototype.includes) {
 }
 
 if (!Array.prototype.findIndex) {
-  Array.prototype.findIndex = function findIndex(predicate) { // eslint-disable-line
+  Array.prototype.findIndex = function findIndex(predicate, thisArg = void 0) {
     // 1. Let O be ? ToObject(this value).
     if (this == null) {
       throw new TypeError('"this" is null or not defined');
@@ -89,15 +94,12 @@ if (!Array.prototype.findIndex) {
     const o = Object(this);
 
     // 2. Let len be ? ToLength(? Get(O, "length")).
-    const len = o.length >>> 0; // eslint-disable-line
+    const len = o.length >>> 0;
 
     // 3. If IsCallable(predicate) is false, throw a TypeError exception.
     if (typeof predicate !== 'function') {
       throw new TypeError('predicate must be a function');
     }
-
-    // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
-    const thisArg = arguments[1]; // eslint-disable-line
 
     // 5. Let k be 0.
     let k = 0;
@@ -123,8 +125,7 @@ if (!Array.prototype.findIndex) {
 }
 
 if (!Array.prototype.map) {
-  Array.prototype.map = function(callback) { // eslint-disable-line
-    let T;
+  Array.prototype.map = function map(callback, thisArg = void 0) {
     let k;
 
     if (this == null) {
@@ -138,17 +139,12 @@ if (!Array.prototype.map) {
     // 2. Let lenValue be the result of calling the Get internal
     //    method of O with the argument "length".
     // 3. Let len be ToUint32(lenValue).
-    const len = O.length >>> 0; // eslint-disable-line
+    const len = O.length >>> 0;
 
     // 4. If IsCallable(callback) is false, throw a TypeError exception.
     // See: http://es5.github.com/#x9.11
     if (typeof callback !== 'function') {
       throw new TypeError(`${callback} is not a function`);
-    }
-
-    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
-    if (arguments.length > 1) {
-      T = arguments[1]; // eslint-disable-line
     }
 
     // 6. Let A be a new array created as if by the expression new Array(len)
@@ -178,7 +174,7 @@ if (!Array.prototype.map) {
         // ii. Let mappedValue be the result of calling the Call internal
         //     method of callback with T as the this value and argument
         //     list containing kValue, k, and O.
-        mappedValue = callback.call(T, kValue, k, O);
+        mappedValue = callback.call(thisArg, kValue, k, O);
 
         // iii. Call the DefineOwnProperty internal method of A with arguments
         // Pk, Property Descriptor
@@ -211,7 +207,7 @@ if (!Array.prototype.map) {
 if (!Object.keys) {
   Object.keys = (function keys() {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
-    const hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'); // eslint-disable-line
+    const hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString');
     const dontEnums = [
       'toString',
       'toLocaleString',
@@ -232,7 +228,7 @@ if (!Object.keys) {
       let prop;
       let i;
 
-      for (prop in obj) { // eslint-disable-line
+      for (prop in obj) {
         if (hasOwnProperty.call(obj, prop)) {
           result.push(prop);
         }

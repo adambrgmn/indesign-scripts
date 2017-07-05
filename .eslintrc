@@ -10,10 +10,12 @@
     "File": false,
     "exit": false,
     "alert": false,
+    "confirm": false,
     "SaveOptions": false,
     "LocationOptions": false
   },
   "rules": {
-    "arrow-parens": 0
+    "arrow-parens": 0,
+    "no-alert": 0,
   }
 }
