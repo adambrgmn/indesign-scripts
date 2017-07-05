@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist/**/*",
+    "prebuild": "rimraf build/**/*",
     "build": "rollup -c",
     "postbuild": "./scripts/link-scripts.js",
     "lint": "eslint src"

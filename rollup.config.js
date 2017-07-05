@@ -12,5 +12,5 @@ export default {
     commonjs(),
     babel({ exclude: 'node_modules/**' }),
   ],
-  dest: `dist/merge-files_${version}.jsx`,
+  dest: `build/merge-files_${version}.jsx`,
 };
