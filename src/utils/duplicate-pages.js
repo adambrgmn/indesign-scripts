@@ -15,4 +15,4 @@ const duplicatePages = (source, dest, { start, end }) => {
   }
 };
 
-export default duplicatePages;
+module.exports = duplicatePages;
