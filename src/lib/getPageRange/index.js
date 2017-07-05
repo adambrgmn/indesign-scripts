@@ -1,4 +1,4 @@
-import notify from './notify';
+import notify from '../notify';
 
 const parseRange = (range, { min, max }) => {
   // Match the input and get the values

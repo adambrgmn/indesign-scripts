@@ -1,9 +1,9 @@
 import './polyfills';
-import getPageRange from './utils/get-page-range';
-import duplicatePages from './utils/duplicate-pages';
-import removePages from './utils/remove-pages';
-import checkLinkedTextFrames from './utils/check-linked-text-frames';
-import notify from './utils/notify';
+import getPageRange from './lib/getPageRange';
+import duplicatePages from './lib/duplicatePages';
+import removePages from './lib/removePages';
+import checkLinkedTextFrames from './lib/checkLinkedTextFrames';
+import notify from './lib/notify';
 
 // Get destination document from currently active document
 const destinationDocument = app.activeDocument;
