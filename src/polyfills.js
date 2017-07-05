@@ -1,8 +1,4 @@
-/* eslint-disable
-no-extend-native,
-no-prototype-builtins,
-no-void, no-bitwise,
-no-restricted-syntax */
+/* eslint-disable no-extend-native, no-prototype-builtins, no-void, no-bitwise, no-restricted-syntax */
 
 if (!Array.isArray) {
   Array.isArray = arg =>
@@ -65,7 +61,10 @@ if (!Array.prototype.includes) {
     let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
 
     function sameValueZero(x, y) {
-      return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+      return (
+        x === y ||
+        (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y))
+      );
     }
 
     // 7. Repeat, while k < len
@@ -207,7 +206,7 @@ if (!Array.prototype.map) {
 if (!Object.keys) {
   Object.keys = (function keys() {
     const hasOwnProperty = Object.prototype.hasOwnProperty;
-    const hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString');
+    const hasDontEnumBug = !{ toString: null }.propertyIsEnumerable('toString');
     const dontEnums = [
       'toString',
       'toLocaleString',
@@ -219,8 +218,11 @@ if (!Object.keys) {
     ];
     const dontEnumsLength = dontEnums.length;
 
-    return (obj) => {
-      if (typeof obj !== 'function' && (typeof obj !== 'object' || obj === null)) {
+    return obj => {
+      if (
+        typeof obj !== 'function' &&
+        (typeof obj !== 'object' || obj === null)
+      ) {
         throw new TypeError('Object.keys called on non-object');
       }
 
@@ -243,5 +245,5 @@ if (!Object.keys) {
       }
       return result;
     };
-  }());
+  })();
 }
