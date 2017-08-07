@@ -23,7 +23,7 @@ const getPageRange = ({ min = '1', max = '9999' }) => {
 
   // Construct the input box
   const textEditbox = row.textEditboxes.add({
-    editContents: '1-3',
+    editContents: `${min}-${max}`,
     minWidth: 200,
   });
 

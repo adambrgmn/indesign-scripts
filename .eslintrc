@@ -13,7 +13,9 @@
     "alert": false,
     "confirm": false,
     "SaveOptions": false,
-    "LocationOptions": false
+    "LocationOptions": false,
+    "OpenOptions": false,
+    "BindingOptions": false
   },
   "rules": {
     "arrow-parens": 0,

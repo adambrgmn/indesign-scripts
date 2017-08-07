@@ -2,7 +2,6 @@ import './polyfills';
 import getPageRange from './lib/getPageRange';
 import duplicatePages from './lib/duplicatePages';
 import removePages from './lib/removePages';
-import checkLinkedTextFrames from './lib/checkLinkedTextFrames';
 import notify from './lib/notify';
 
 // Get destination document from currently active document
@@ -15,9 +14,8 @@ const sourceFile = File.openDialog('Select InDesign file to merge pages from');
 // clicked "cancel" in the dialog box the script will exit
 if (!destinationDocument || !sourceFile) exit();
 
-// Open the source file in the background
-app.open(sourceFile, false);
-const sourceDocument = app.documents.item(sourceFile.name);
+// Open a copy of the source file in the background
+const sourceDocument = app.open(sourceFile, false, OpenOptions.OPEN_COPY);
 
 // Ask for pages to merge
 // the answer must be of format number-number
@@ -28,22 +26,6 @@ const pageRange = getPageRange({
 
 // If the user clicked "cancel" in the dialog the script will exit
 if (!pageRange) exit();
-
-const hasLinkedText = checkLinkedTextFrames(sourceDocument, {
-  start: pageRange.start,
-  end: pageRange.end,
-});
-
-if (hasLinkedText.length > 0) {
-  const shouldContinue = confirm(
-    `Found linked text frames outside the range you want to copy.
-On pages ${hasLinkedText.join(', ')}
-
-If you merge these pages the linked text will be broken. Do you want to continue?`,
-  );
-
-  if (!shouldContinue) exit();
-}
 
 // Duplicate the pages from the the
 // source document to the detination document
@@ -63,7 +45,7 @@ if (!duplicated) {
 const removed = removePages(destinationDocument, pageRange);
 
 // If something went wrong, the script will exit and warn the user
-if (!duplicated || !removed) {
+if (!removed) {
   notify('Something went wrong, please try again');
   exit();
 }
