@@ -64,7 +64,7 @@
     "publish": [
       {
         "path": "@semantic-release/github",
-        "assets": [["dist/*.js"]]
+        "assets": "dist/*.js"
       }
     ]
   }
