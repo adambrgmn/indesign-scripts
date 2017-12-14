@@ -65,10 +65,6 @@ if (!autorelease) {
     'No need to autorelease or report coverage. Skipping travis-after-success script...',
   );
 } else {
-  spawn.sync('zip', ['-r', 'indesign-scripts.zip', 'dist'], {
-    cwd: process.cwd(),
-  });
-
   const result = spawn.sync(
     path.join(__dirname, '..', 'node_modules/.bin', 'concurrently'),
     getConcurrentlyArgs(
