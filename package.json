@@ -9,7 +9,7 @@
     "build": "rollup -c",
     "postbuild": "./scripts/link-scripts.js",
     "lint": "eslint 'src/**/*.js'",
-    "prettier": "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
+    "format": "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
   },
   "lint-staged": {
     "*.js": [
