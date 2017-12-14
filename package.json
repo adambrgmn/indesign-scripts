@@ -64,7 +64,13 @@
     "publish": [
       {
         "path": "@semantic-release/github",
-        "assets": "dist/*.js"
+        "assets": [
+          {
+            "path": "indesign-scripts.zip",
+            "name": "Indesign Scripts",
+            "label": "Download (zip)"
+          }
+        ]
       }
     ]
   }
