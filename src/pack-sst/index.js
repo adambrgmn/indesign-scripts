@@ -88,7 +88,7 @@ function main() {
   );
 
   newDoc.save();
-  alert('Done. The PDFs are now being exported in the background');
+  alert('The PDFs are now being exported in the background');
 }
 
 try {
