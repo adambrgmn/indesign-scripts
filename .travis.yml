@@ -16,7 +16,7 @@ script: yarn run build
 after_success:
   - git config --replace-all remote.origin.fetch +refs/heads/*:refs/remotes/origin/*
   - git fetch --tags
-  - node ./scripts/travis-after-success.js
+  - yarn run release
 
 branches:
   only:

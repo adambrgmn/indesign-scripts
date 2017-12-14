@@ -7,7 +7,7 @@
     "precommit": "lint-staged",
     "prebuild": "rimraf dist/**/*",
     "build": "rollup -c",
-    "semantic-release": "semantic-release pre && semantic-release post",
+    "release": "semantic-release pre && semantic-release post",
     "lint": "eslint 'src/**/*.js'",
     "format":
       "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
@@ -64,7 +64,7 @@
     "publish": [
       {
         "path": "@semantic-release/github",
-        "assets": [["dist"]]
+        "assets": [["dist/*.js"]]
       }
     ]
   }
