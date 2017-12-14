@@ -27,6 +27,5 @@ if (!autorelease) {
   );
 } else {
   const result = spawn.sync('yarn', ['run', 'semantic-release']);
-
   process.exit(result.status);
 }

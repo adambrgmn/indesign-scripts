@@ -7,7 +7,7 @@
     "precommit": "lint-staged",
     "prebuild": "rimraf dist/**/*",
     "build": "rollup -c",
-    "release": "semantic-release pre && semantic-release post",
+    "semantic-release": "semantic-release",
     "lint": "eslint 'src/**/*.js'",
     "format":
       "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
@@ -45,7 +45,7 @@
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "semantic-release": "^8.2.0"
+    "semantic-release": "^11.0.2"
   },
   "lint-staged": {
     "*.js": [
@@ -60,7 +60,7 @@
     }
   },
   "release": {
-    "getLastRelease": "last-release-git",
+    "getLastRelease": "./scripts/last-release-git.js",
     "publish": [
       {
         "path": "@semantic-release/github",
