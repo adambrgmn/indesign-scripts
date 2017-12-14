@@ -2572,6 +2572,12 @@ kind-of@^4.0.0:
   dependencies:
     is-buffer "^1.1.5"
 
+last-release-git@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/last-release-git/-/last-release-git-0.0.3.tgz#7c82611022b134a87415981a936e26c521f2ef91"
+  dependencies:
+    semver "^5.3.0"
+
 lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"

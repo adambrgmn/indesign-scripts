@@ -8,10 +8,11 @@
     "prebuild": "rimraf dist/**/*",
     "build": "rollup -c",
     "lint": "eslint 'src/**/*.js'",
-    "format":
-      "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
+    "format": "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/adambrgmn/indesign-scripts.git"
@@ -33,6 +34,7 @@
     "eslint-plugin-extendscript": "^1.0.1",
     "eslint-plugin-import": "^2.2.0",
     "husky": "^0.14.3",
+    "last-release-git": "^0.0.3",
     "lint-staged": "^6.0.0",
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.5.2",
@@ -57,13 +59,11 @@
     }
   },
   "release": {
+    "getLastRelease": "last-release-git",
     "publish": [
       {
         "path": "@semantic-release/github",
-        "assets": [{
-          "path": "indesign-scripts.zip",
-          "label": "Download (zip)"
-        }]
+        "assets": ["dist/*.js"]
       }
     ]
   }
