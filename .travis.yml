@@ -1,0 +1,14 @@
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
+node_js:
+  - '8'
+build: yarn run build
+after_success:
+  - node ./scripts/travis-after-success.js
+branches:
+  only:
+    - master

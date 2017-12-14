@@ -1,36 +1,44 @@
-import { join, dirname } from 'path';
+import { readdirSync } from 'fs';
+import { join } from 'path';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
-import { version } from './package.json';
+import nodeBuiltIns from 'rollup-plugin-node-builtins';
+import camelcase from 'lodash.camelcase';
 
-const files = ['src/pack-ztory/index.js'];
+const capitalize = s => s[0].toUpperCase() + s.slice(1);
+
+const files = readdirSync(join(__dirname, 'src')).filter(
+  item => item !== 'polyfills' && item !== 'utils',
+);
 
 const configs = files.map(file => {
-  const entryName = dirname(file, '.js')
-    .split('/')
-    .slice(-1)[0];
+  const name = capitalize(camelcase(file));
+  const input = join('src', file, 'index.js');
 
   return {
-    entry: file,
-    format: 'iife',
+    input,
+    output: {
+      file: join('dist', `${file}.jsx`),
+      format: 'iife',
+    },
+    name,
     exports: 'none',
     plugins: [
-      resolve({ jsnext: true, main: true, browser: true }),
-      commonjs(),
+      nodeBuiltIns(),
+      resolve({ preferBuiltins: false, jsnext: true, main: true }),
+      commonjs({ include: 'node_modules/**' }),
       babel({
         exclude: 'node_modules/**',
-        babelrc: false,
         presets: [['env', { modules: false }]],
         plugins: [
+          'external-helpers',
           'transform-object-rest-spread',
           'transform-class-properties',
-          'external-helpers',
         ],
       }),
     ],
-    banner: '//@target indesign',
-    dest: join('build', `${entryName}.${version}.jsx`),
+    banner: '// @target indesign',
   };
 });
 
