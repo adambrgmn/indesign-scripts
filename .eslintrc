@@ -1,21 +1,17 @@
 {
-  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "extends": ["airbnb-base", "prettier"],
+  "plugins": ["extendscript"],
   "env": {
     "node": true,
     "es6": true,
-    "applescript": true
-  },
-  "globals": {
-    "app": false,
-    "File": false,
-    "exit": false,
-    "alert": false,
-    "confirm": false,
-    "SaveOptions": false,
-    "LocationOptions": false
+    "extendscript/base": true,
+    "extendscript/scriptui": true,
+    "extendscript/indesign": true
   },
   "rules": {
     "arrow-parens": 0,
     "no-alert": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }
