@@ -1,76 +1,32 @@
 {
   "name": "indesign-scripts",
-  "version": "0.0.0-development",
+  "version": "0.0.0-semantically-released",
+  "description": "A set of InDesign-scripts",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "precommit": "lint-staged",
-    "prebuild": "rimraf dist/**/*",
-    "build": "rollup -c",
-    "semantic-release": "semantic-release",
-    "lint": "eslint 'src/**/*.js'",
-    "format":
-      "prettier --single-quote --trailing-comma all --write 'src/**/*.js'"
+    "build": "extend-scripts build",
+    "test": "extend-scripts test",
+    "lint": "extend-scripts lint",
+    "format": "extend-scripts format",
+    "precommit": "extend-scripts precommit",
+    "release": "extend-scripts travis-after-success"
   },
   "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "https://github.com/adambrgmn/indesign-scripts.git"
   },
+  "author":
+    "Adam Bergman <adam@fransvilhelm.com> (https://github.com/adambrgmn)",
   "dependencies": {},
   "devDependencies": {
-    "@semantic-release/github": "^2.2.1",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^8.0.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.5.2",
-    "concurrently": "^3.5.1",
-    "cross-spawn": "^5.1.0",
     "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^4.13.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-extendscript": "^1.0.1",
-    "eslint-plugin-import": "^2.2.0",
-    "husky": "^0.14.3",
-    "last-release-git": "^0.0.3",
-    "lint-staged": "^6.0.0",
-    "lodash.camelcase": "^4.3.0",
-    "prettier": "^1.5.2",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.52.1",
-    "rollup-plugin-babel": "^3.0.2",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "semantic-release": "^11.0.2"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --single-quote --trailing-comma all --write",
-      "git add"
-    ]
+    "extend-scripts": "^1.0.3"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "release": {
-    "getLastRelease": "./scripts/last-release-git.js",
-    "publish": [
-      {
-        "path": "@semantic-release/github",
-        "assets": [
-          {
-            "path": "dist",
-            "label": "Download scripts (zip)"
-          }
-        ]
-      }
-    ]
   }
 }
