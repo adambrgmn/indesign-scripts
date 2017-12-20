@@ -1,9 +1,9 @@
 import { join } from 'path';
-import '../polyfills/array/forEach';
-import '../polyfills/array/isArray';
-import copyDoc from '../utils/copy-doc';
-import Loadbar from '../utils/loadbar';
-import exportPdf from '../utils/export-pdf';
+import './polyfills/array/forEach';
+import './polyfills/array/isArray';
+import copyDoc from './utils/copy-doc';
+import Loadbar from './utils/loadbar';
+import exportPdf from './utils/export-pdf';
 
 function forEach(list, fn) {
   Array.prototype.forEach.call(list, fn);
