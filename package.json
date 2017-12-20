@@ -6,9 +6,10 @@
   "license": "MIT",
   "scripts": {
     "build": "extend-scripts build",
-    "test": "extend-scripts test",
+    "test": "extend-scripts test --passWithNoTests",
     "lint": "extend-scripts lint",
     "format": "extend-scripts format",
+    "validate": "extend-scripts validate",
     "precommit": "extend-scripts precommit",
     "release": "extend-scripts travis-after-success"
   },
