@@ -2312,9 +2312,9 @@ expect@^22.0.3:
     jest-message-util "^22.0.3"
     jest-regex-util "^22.0.3"
 
-extend-scripts@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/extend-scripts/-/extend-scripts-1.0.3.tgz#1c598ad023ca051f657959cd6b3d57ed9fad3c73"
+extend-scripts@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/extend-scripts/-/extend-scripts-1.0.5.tgz#d621fb1854222e3f9b99709d40b99a9d318453b2"
   dependencies:
     "@semantic-release/github" "^2.2.3"
     "@semantic-release/last-release-git-tag" "^2.0.0"
