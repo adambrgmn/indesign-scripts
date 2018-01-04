@@ -5,13 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "bundle": "extend-scripts bundle",
+    "build": "extend-scripts bundle",
     "test": "extend-scripts test --passWithNoTests",
     "lint": "extend-scripts lint",
     "format": "extend-scripts format",
     "precommit": "extend-scripts precommit",
     "validate":
-      "yarn run lint && yarn run test --no-watch --passWithNoTests && yarn run bundle",
+      "yarn run lint && yarn run test --no-watch --passWithNoTests && yarn run build",
     "release": "extend-scripts release"
   },
   "files": ["dist"],
