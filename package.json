@@ -5,13 +5,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "extend-scripts build",
+    "bundle": "extend-scripts bundle",
     "test": "extend-scripts test --passWithNoTests",
     "lint": "extend-scripts lint",
     "format": "extend-scripts format",
-    "validate": "extend-scripts validate",
     "precommit": "extend-scripts precommit",
-    "release": "extend-scripts travis-after-success"
+    "validate":
+      "yarn run lint && yarn run test --no-watch --passWithNoTests && yarn run bundle",
+    "release": "extend-scripts release"
   },
   "files": ["dist"],
   "repository": {
@@ -23,7 +24,7 @@
   "dependencies": {},
   "devDependencies": {
     "cz-conventional-changelog": "^2.1.0",
-    "extend-scripts": "^1.0.5"
+    "extend-scripts": "2.0.0"
   },
   "config": {
     "commitizen": {
