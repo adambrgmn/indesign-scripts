@@ -40,8 +40,7 @@ function main() {
   /**
    * First document will be the base, the rest will be merged into it.
    */
-  const firstDocument = sortedDocuments[0];
-  const restDocuments = sortedDocuments.slice(1);
+  const [firstDocument, ...restDocuments] = sortedDocuments[0];
   const newDoc = copyDoc(firstDocument, generateName(firstDocument));
 
   const loadbar = new Loadbar(
