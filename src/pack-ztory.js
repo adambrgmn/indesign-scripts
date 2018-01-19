@@ -1,6 +1,7 @@
 import { join } from 'path';
 import './polyfills/array/forEach';
 import './polyfills/array/isArray';
+import './polyfills/array/from';
 import copyDoc from './utils/copy-doc';
 import Loadbar from './utils/loadbar';
 import exportPdf from './utils/export-pdf';
@@ -40,7 +41,7 @@ function main() {
   /**
    * First document will be the base, the rest will be merged into it.
    */
-  const [firstDocument, ...restDocuments] = sortedDocuments[0];
+  const [firstDocument, ...restDocuments] = sortedDocuments;
   const newDoc = copyDoc(firstDocument, generateName(firstDocument));
 
   const loadbar = new Loadbar(
